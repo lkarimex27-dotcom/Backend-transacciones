@@ -91,3 +91,19 @@ export const deleteTransaction = async (req, res, next) => {
     next(err);
   }
 };
+export const updateTransaction = async (req, res, next) => {
+  try {
+    if (handleValidation(req, res)) return;
+
+    const updated = await Transaction.findByIdAndUpdate(
+      req.params.id, 
+      req.body, 
+      { new: true } // Esto devuelve el documento ya modificado
+    );
+
+    if (!updated) return res.status(404).json({ message: 'No encontrada' });
+    res.json(updated);
+  } catch (err) {
+    next(err);
+  }
+};

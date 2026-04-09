@@ -3,7 +3,8 @@ import {
   createTransaction,
   getTransactions,
   getTransactionById,
-  deleteTransaction
+  deleteTransaction,
+  updateTransaction 
 } from "../controllers/transaction.controller.js";
 
 // Nota: Deberás crear o renombrar este validador también
@@ -24,5 +25,6 @@ router.get("/", getTransactions);
 router.post("/", createTransactionValidator, createTransaction);
 router.get("/:id", idValidator, getTransactionById);
 router.delete("/:id", idValidator, deleteTransaction);
+router.put("/:id", idValidator, createTransactionValidator, updateTransaction);
 
 export default router;
